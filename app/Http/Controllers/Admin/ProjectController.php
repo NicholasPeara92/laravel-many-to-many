@@ -117,6 +117,10 @@ class ProjectController extends Controller
         // }
         $project->update($data);
 
+        $technologies = isset($data['technologies']) ? $data['technologies'] : [];
+        $project->technologies()->sync($technologies);
+        
+
         return redirect()->route('admin.projects.index')->with('message', "Il progetto $old_title è stato aggiornato");
     }
 
